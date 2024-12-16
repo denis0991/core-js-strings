@@ -366,8 +366,13 @@ function isPalindrome(str) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  return sentence
+    .split(' ')
+    .reduce(
+      (longest, word) => (word.length > longest.length ? word : longest),
+      ''
+    );
 }
 
 /**
@@ -395,8 +400,16 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  return str
+    .split('')
+    .map((char) => {
+      if (char === char.toLowerCase()) {
+        return char.toUpperCase();
+      }
+      return char.toLowerCase();
+    })
+    .join('');
 }
 
 /**
@@ -441,8 +454,8 @@ function extractNameFromTemplate(value) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, -1);
 }
 
 /**
@@ -460,8 +473,8 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -480,8 +493,12 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  return str.replace(/[A-Za-z]/g, (char) => {
+    return String.fromCharCode(
+      char.charCodeAt(0) + (char.toLowerCase() < 'n' ? 13 : -13)
+    );
+  });
 }
 
 /**
@@ -508,8 +525,62 @@ function encodeToRot13(/* str */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const deck = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  return deck.indexOf(value);
 }
 
 module.exports = {
